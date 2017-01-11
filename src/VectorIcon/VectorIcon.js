@@ -5,10 +5,12 @@ import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const iconSets = {
 	'font-awesome': FontAwesome,
 	'ionicon': Ionicons,
+	'material': MaterialCommunityIcons,
 };
 
 const IconType = PropTypes.oneOf(Object.keys(iconSets));

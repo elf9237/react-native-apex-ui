@@ -21,8 +21,4 @@ module.exports = {
 	listItem: {
 		underlayColor: '#ececec',
 	},
-	checkbox: {
-		uncheckedColor: '#c9c9c9',
-		checkedColor: palette.iconTintColor,
-	},
 };

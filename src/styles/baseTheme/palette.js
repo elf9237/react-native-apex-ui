@@ -8,5 +8,5 @@ module.exports = {
 	borderColor: '#d9d9d9',
     disabledColor: fade('#e0e0e0', 0.3),
     containerColor: '#eee',
-    iconTintColor: '#4f8ef7', //selected icon color
+    iconTintColor: '#2196f3',
 };
