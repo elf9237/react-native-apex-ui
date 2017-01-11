@@ -26,7 +26,6 @@ class CheckItem extends Component {
 		if(checked) {
 			var icon = 
 				<VectorIcon 
-				type='material'
 				name='check' 
 				color={palette.iconTintColor}
 				style={styles.tick}
@@ -45,7 +44,7 @@ class CheckItem extends Component {
 
 const styles = {
 	tick: {
-		fontSize: 21,
+		fontSize: 18,
 		textAlign: 'center',
 		lineHeight: 24,
 		height: 24,

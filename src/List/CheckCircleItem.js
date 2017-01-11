@@ -37,7 +37,7 @@ class CheckCircleItem extends Component {
 			icon = (
 				<VectorIcon 
 					type='material'
-					name='check-circle-outline'
+					name='checkbox-blank-circle-outline'
 					style={styles.unchecked}
 				/>
 			);
