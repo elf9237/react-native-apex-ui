@@ -21,7 +21,6 @@ class VectorIcon extends Component {
 		name: PropTypes.string,
 		size: PropTypes.number,
 		color: PropTypes.string,
-		style: PropTypes.object,
 	};
 
 	static defaultProps = {
