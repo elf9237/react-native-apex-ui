@@ -109,15 +109,18 @@ const styles = {
     center: {
     	flex: 1,
     	flexDirection: 'row',
+    	alignItems: 'center',
     },
     titleText: {
+    	fontSize: 17,
+    	lineHeight: 24,
+    	height: 24,
+    },
+    descriptionText: {
     	flex: 1,
     	fontSize: 17,
     	lineHeight: 24,
-    },
-    descriptionText: {
-    	fontSize: 17,
-    	lineHeight: 24,
+    	height: 24,
     	color: '#999',
     	textAlign: 'right',
     },
