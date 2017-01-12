@@ -12,7 +12,7 @@ const IconType = PropTypes.oneOfType([PropTypes.element, PropTypes.object]);
 class Button extends Component {
 	static propTypes = {
 	  	icon: IconType,
-    	caption: PropTypes.string,
+    	caption: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     	color: PropTypes.string,
     	loading: PropTypes.bool,
 	};

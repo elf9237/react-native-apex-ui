@@ -11,6 +11,9 @@ const ReactNativeApexUI = {
 	VectorIcon: require('./VectorIcon'),
 	List: require('./List'),
 	Button: require('./Button'),
+	AppHeader: require('./AppHeader'),
+
+	
 };
 
 module.exports = ReactNativeApexUI;
