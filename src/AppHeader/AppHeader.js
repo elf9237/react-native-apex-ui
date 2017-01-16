@@ -14,7 +14,7 @@ class AppHeader extends Component {
 		if(React.isValidElement(item)) {
 			return item;
 		} else if(typeof item == 'object') {
-			return <Button style={style} {...item} />;
+			return <Button activeOpacity={0.2} style={style} {...item} />;
 		}
 	}
 
@@ -67,6 +67,7 @@ const styles = {
 		flexDirection: 'row',
 		alignItems: 'center',
 		backgroundColor: 'white',
+		overflow: 'hidden',
     },
     leftItem: {
     	flex: 1,

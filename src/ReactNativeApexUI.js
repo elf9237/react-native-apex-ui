@@ -12,6 +12,7 @@ const ReactNativeApexUI = {
 	List: require('./List'),
 	Button: require('./Button'),
 	AppHeader: require('./AppHeader'),
+	Paper: require('./Paper'),
 
 	
 };
