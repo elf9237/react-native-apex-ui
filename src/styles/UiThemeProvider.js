@@ -13,18 +13,30 @@ class UiThemeProvider extends Component {
 
 	static childContextTypes = {
 		uiTheme: PropTypes.object.isRequired,
-		getLayer: React.PropTypes.func,
+		getFilledLayer: React.PropTypes.func.isRequired,
+		getDockedTopLayer: React.PropTypes.func.isRequired,
+		getDockedBottomLayer: React.PropTypes.func.isRequired,
 	};
 
 	getChildContext() {
 		return {
 			uiTheme: this.props.uiTheme || getUiTheme(),
-			getLayer: this.getLayer,
+			getFilledLayer: this.getFilledLayer,
+			getDockedTopLayer: this.getDockedTopLayer,
+			getDockedBottomLayer: this.getDockedBottomLayer,
 		};
 	}
 
-	getLayer() {
-        return this.refs.layer;
+	getFilledLayer = () => {
+        return this.refs.filledLayer;
+    }
+
+    getDockedTopLayer = () => {
+        return this.refs.dockedTopLayer;
+    }
+
+    getDockedBottomLayer = () => {
+        return this.refs.dockedBottomLayer;
     }
 
 	render() {
@@ -39,7 +51,9 @@ class UiThemeProvider extends Component {
 				{...other}
 				style={[styles.container, style]}>
 				{children}
-				<Layer ref='layer' />
+				<Layer ref='dockedTopLayer' style={styles.dockedTopLayer} />
+				<Layer ref='dockedBottomLayer' style={styles.dockedBottomLayer} />
+				<Layer ref='filledLayer' />
 			</View>
 		);
 	}
@@ -48,7 +62,13 @@ class UiThemeProvider extends Component {
 const styles = {
 	container: {
 		flex: 1,
-	}
+	},
+	dockedTopLayer: {
+		bottom: undefined,
+	},
+	dockedBottomLayer: {
+		top: undefined,
+	},
 };
 
 module.exports = UiThemeProvider;

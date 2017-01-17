@@ -13,6 +13,7 @@ const ReactNativeApexUI = {
 	Button: require('./Button'),
 	AppHeader: require('./AppHeader'),
 	Paper: require('./Paper'),
+	Popover: require('./Popover'),
 
 	
 };

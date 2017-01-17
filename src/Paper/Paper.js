@@ -2,7 +2,7 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import ReactNative, {View, Text} from 'react-native';
+import ReactNative, {Animated, Text} from 'react-native';
 
 class Paper extends Component {
 	static propTypes = {
@@ -18,6 +18,10 @@ class Paper extends Component {
 		uiTheme: PropTypes.object.isRequired,
 	};
 
+	setNativeProps = (props) => {
+		this.refs.paper.setNativeProps(props);
+	}
+
 	render() {
 		const {
 			style,
@@ -27,16 +31,26 @@ class Paper extends Component {
 		} = this.props;
 
 		const {paper} = this.context.uiTheme;
-
+		const _style = [
+			styles.paper,
+			{backgroundColor: paper.backgroundColor}, 
+			[paper.zDepthShadows[zDepth - 1]], style
+		];
 		return (
-			<View style={[{backgroundColor: paper.backgroundColor}, 
-				[paper.zDepthShadows[zDepth - 1]], style]}
+			<Animated.View 
 				{...other}
-			>
+				ref='paper'
+				style={_style}>
 				{children}
-			</View>
+			</Animated.View>
 		);
 	}
 }
+
+const styles = {
+	paper: {
+		borderRadius: 2,
+	},
+};
 
 module.exports = Paper;

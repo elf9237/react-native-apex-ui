@@ -17,7 +17,7 @@ var Layer = React.createClass({
 	},
 
 	unrenderLayer() {
-		this.setState({open: false});
+		this.setState({contents: null, open: false});
 		this.onClickAway = null;
 	},
 

@@ -36,5 +36,8 @@ module.exports = {
 			shadowColor: fade(palette.shadowColor, d[2]),
 			shadowOpacity: 1,
 		})),
-	}
+	},
+	mask: {
+    	backgroundColor: 'rgba(0, 0, 0, 0.54)',
+    },
 };
