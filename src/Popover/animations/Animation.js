@@ -15,7 +15,7 @@ class Animation extends Component {
 	};
 
 	state = {
-		layout: null,
+		layout: {width: 0, height: 0},
 		anim: new Animated.Value(0),
 	};
 
@@ -48,7 +48,7 @@ class Animation extends Component {
 
 	handleLayout = (e) => {
 		let layout = e.nativeEvent.layout;
-		if(layout.height && !this.state.layout) {
+		if(layout.height && layout.width) {
 			this.setState({layout});
 		}
 	}
@@ -71,12 +71,7 @@ class Animation extends Component {
 			...other,
 		} = this.props;
 
-		let transformStyle;
-		if(!this.state.layout) {
-			transformStyle = styles.hidden;
-		} else {
-			transformStyle = this.prepareStyle();
-		}
+		let transformStyle = this.prepareStyle();
 
 		return (
 			<Paper 

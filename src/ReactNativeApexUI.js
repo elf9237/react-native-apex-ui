@@ -14,6 +14,7 @@ const ReactNativeApexUI = {
 	AppHeader: require('./AppHeader'),
 	Paper: require('./Paper'),
 	Popover: require('./Popover'),
+	Dialog: require('./Dialog'),
 
 	
 };

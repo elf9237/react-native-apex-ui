@@ -6,6 +6,7 @@ import ReactNative, {View, Text, InteractionManager} from 'react-native';
 var UIManager = require('UIManager');
 var RenderToLayer = require('../Layer/RenderToLayer');
 var PopoverAnimationVertical = require('./animations/PopoverAnimationVertical');
+var MaskedAnimation = require('./animations/MaskedAnimation');
 
 class Popover extends Component {
 	static propTypes = {
@@ -14,7 +15,6 @@ class Popover extends Component {
 		children: PropTypes.node,
 		onRequestClose: PropTypes.func,
 		open: PropTypes.bool,
-		style: PropTypes.object,
 		masked: PropTypes.bool,
 		zDepth: PropTypes.number,
 	};
@@ -111,6 +111,7 @@ class Popover extends Component {
 			children,
 			style,
 			masked,
+			layerStyle,
 			...other,
 		} = this.props;
 
@@ -146,6 +147,7 @@ class Popover extends Component {
 				render={this.renderContent}
 				onRequestClose={this.props.onRequestClose}
 				getLayer={this.props.getLayer}
+				layerStyle={this.props.layerStyle}
 			/>
 		);
 	}

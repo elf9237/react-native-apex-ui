@@ -11,6 +11,7 @@ class RenderToLayer extends Component {
 		render: PropTypes.func.isRequired,
 		onRequestClose: PropTypes.func,
 		getLayer: PropTypes.func,
+		layerStyle: PropTypes.object,
 	};
 
 	componentDidMount() {
@@ -42,11 +43,12 @@ class RenderToLayer extends Component {
 		const {
 			render,
 			onRequestClose,
+			layerStyle,
 		} = this.props;
 
 		const layer = this.getLayer();
 		const layerElement = render();
-		layer.renderLayer(layerElement);
+		layer.renderLayer(layerElement, layerStyle);
 		layer.onClickAway = onRequestClose;
 	}
 

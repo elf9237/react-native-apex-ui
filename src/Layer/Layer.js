@@ -9,15 +9,24 @@ var Layer = React.createClass({
 		return {
 			open: false,
 			contents: null,
+			layerStyle: null,
 		};
 	},
 
-	renderLayer(contents: ReactElement) {
-		this.setState({contents, open: true});
+	renderLayer(contents: ReactElement, layerStyle: Object) {
+		this.setState({
+			open: true,
+			contents, 
+			layerStyle,
+		});
 	},
 
 	unrenderLayer() {
-		this.setState({contents: null, open: false});
+		this.setState({
+			open: false,
+			contents: null,
+			layerStyle: null,
+		});
 		this.onClickAway = null;
 	},
 
@@ -28,7 +37,7 @@ var Layer = React.createClass({
 
 		return (
 			<TouchableWithoutFeedback onPress={this.onClickAway}>
-				<View style={[styles.layer, this.props.style]}>
+				<View style={[styles.layer, this.props.style, this.state.layerStyle]}>
 					{this.state.contents}
 				</View>
 			</TouchableWithoutFeedback>

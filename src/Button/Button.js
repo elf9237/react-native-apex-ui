@@ -24,6 +24,7 @@ class Button extends Component {
 			color,
 			loading,
 			style,
+			captionStyle,
 			...other,
 		} = this.props;
 
@@ -42,7 +43,7 @@ class Button extends Component {
 
 		if(typeof caption === 'string') {
 			caption = 
-				<Text style={[styles.caption, {color: textColor}]}>
+				<Text style={[styles.caption, {color: textColor}, captionStyle]}>
 					{caption}
 				</Text>
 		}
@@ -57,11 +58,9 @@ class Button extends Component {
 				activeOpacity={.5}
 				disabled={loading}
 				{...other}>
-				<View style={styles.content}>
-					{icon}
-					{space}
-					{caption}
-				</View>
+				{icon}
+				{space}
+				{caption}
 			</TouchableOpacity>
 		);
 	}
@@ -70,10 +69,7 @@ class Button extends Component {
 const styles = {
 	container: {
         padding: 10,
-    },
-    content: {
-    	flex: 1,
-    	flexDirection: 'row',
+        flexDirection: 'row',
 	    alignItems: 'center',
 	    justifyContent: 'center',
     },
