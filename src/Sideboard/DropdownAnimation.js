@@ -1,0 +1,37 @@
+
+'use strict';
+
+import React, {Component, PropTypes} from 'react';
+import ReactNative, {View, Animated, Easing} from 'react-native';
+var Animation = require('../Popover/Animation');
+
+class DropdownAnimation extends Animation {
+	setAnimationTo = (value) => {
+		this.state.anim.stopAnimation();
+		Animated.timing(
+			this.state.anim,
+			{
+				toValue: value,
+				easing: Easing.elastic(.8),
+				duration: 320,
+			}
+		).start();
+	}
+
+	prepareStyle() {
+		let {layout, anim} = this.state;
+
+		if(layout) {
+			var translateY = this.interpolate(0, -layout.height);
+		}
+
+		return {
+			opacity: !layout ? 0 : 1,
+			transform: [
+				{translateY},
+			],
+		};
+	}
+}
+
+module.exports = DropdownAnimation;

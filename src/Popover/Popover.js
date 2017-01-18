@@ -57,6 +57,13 @@ class Popover extends Component {
 		}
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		if(!nextProps.open && !this.state.open) {
+			return false;			
+		}
+		return true;
+	}
+
 	componentDidUpdate() {
 		this.setPlacement();
 	}
@@ -89,10 +96,19 @@ class Popover extends Component {
 		const offsetX = offset.x || 0;
 		const offsetY = offset.y || 0;
 
+		let x, y;
+		if(this.props.getLayer) {
+			x = locationX;
+			y = locationY;
+		} else {
+			x = pageX;
+			y = pageY;
+		}
+
 		targetEl.setNativeProps({
 			style: {
-				left: locationX + offsetX,
-				top: locationY + height + offsetY,
+				left: x + offsetX,
+				top: y + height + offsetY,
 			}
 		});
 	}

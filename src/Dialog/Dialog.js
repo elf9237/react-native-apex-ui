@@ -10,10 +10,9 @@ class Dialog extends Component {
 	static propTypes = {
 		title: PropTypes.node,
 		children: PropTypes.node,
-	};
-
-	static contextTypes = {
-		getLayer: PropTypes.func.isRequired,
+		onRequestClose: PropTypes.func,
+		open: PropTypes.bool,
+		zDepth: PropTypes.number,
 	};
 
 	render() {
@@ -38,7 +37,6 @@ class Dialog extends Component {
 				masked={true}
 				{...other}
 				animation={DialogAnimation}
-				getLayer={this.context.getLayer}
 				layerStyle={styles.layer}
 				style={[styles.popover, style]}>
 				{title}

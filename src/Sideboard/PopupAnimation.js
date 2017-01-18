@@ -5,16 +5,21 @@ import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var Animation = require('../Popover/Animation');
 
-class DialogAnimation extends Animation {
+class PopupAnimation extends Animation {
 	prepareStyle() {
 		let {layout, anim} = this.state;
+
+		if(layout) {
+			var translateY = this.interpolate(0, layout.height);
+		}
+
 		return {
-			opacity: !layout ? 0 : anim,
+			opacity: !layout ? 0 : 1,
 			transform: [
-				{scale: this.interpolate(1, .85)},
+				{translateY},
 			],
 		};
 	}
 }
 
-module.exports = DialogAnimation;
+module.exports = PopupAnimation;

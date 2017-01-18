@@ -14,6 +14,10 @@ class RenderToLayer extends Component {
 		layerStyle: PropTypes.object,
 	};
 
+	static contextTypes = {
+		getLayer: PropTypes.func.isRequired,
+	};
+
 	componentDidMount() {
 		this.renderIfOpened();
 	}
@@ -27,7 +31,7 @@ class RenderToLayer extends Component {
 	}
 
 	getLayer = () => {
-		return this.props.getLayer ? this.props.getLayer() : this.refs.layer;
+		return (this.props.getLayer || this.context.getLayer)();
 	}
 
 	renderIfOpened = () => {
@@ -36,7 +40,9 @@ class RenderToLayer extends Component {
 
 	unrenderFromLayer = () => {
 		const layer = this.getLayer();
-		layer.unrenderLayer();
+		if(layer) {
+			layer.unrenderLayer();
+		}
 	}
 
 	renderToLayer = () => {
@@ -47,13 +53,15 @@ class RenderToLayer extends Component {
 		} = this.props;
 
 		const layer = this.getLayer();
-		const layerElement = render();
-		layer.renderLayer(layerElement, layerStyle);
-		layer.onClickAway = onRequestClose;
+		if(layer) {
+			const layerElement = render();
+			layer.renderLayer(layerElement, layerStyle, this);
+			layer.onClickAway = onRequestClose;
+		}
 	}
 
 	render() {
-		return <Layer ref='layer' />;
+		return null;
 	}
 }
 

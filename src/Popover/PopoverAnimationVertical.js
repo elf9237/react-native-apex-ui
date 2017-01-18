@@ -10,7 +10,7 @@ class PopoverAnimationVertical extends Animation {
 	prepareStyle() {
 		let {layout, anim} = this.state;
 		return {
-			opacity: anim,
+			opacity: !layout ? 0 : anim,
 			transform: [
 				{scaleY: this.interpolate(1)},
 				{translateY: this.interpolate(0, -layout.height)}
