@@ -26,7 +26,7 @@ class DropdownAnimation extends Animation {
 		}
 
 		return {
-			opacity: !layout ? 0 : 1,
+			opacity: this.interpolate([0, 0, 1, 1], [0, .2, .2, 1]),
 			transform: [
 				{translateY},
 			],

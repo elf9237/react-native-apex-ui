@@ -50,7 +50,7 @@ class Paper extends Component {
 
 const styles = {
 	paper: {
-		borderRadius: 2,
+		
 	},
 };
 

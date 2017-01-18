@@ -3,7 +3,6 @@
 import {StyleSheet, Platform} from 'react-native';
 
 export function create(styles: Object): {[name: string]: number} {
-    return styles;
     const platformStyles = {};
     Object.keys(styles).forEach((name) => {
         let {ios, android, ...style} = {...styles[name]};
@@ -15,5 +14,5 @@ export function create(styles: Object): {[name: string]: number} {
         }
         platformStyles[name] = style;
     });
-    return StyleSheet.create(platformStyles);
+    return platformStyles;
 }

@@ -51,6 +51,7 @@ const styles = {
 		justifyContent: 'center',
 	},
 	popover: {
+		borderRadius: 2,
 		overflow: 'hidden',
 		alignSelf: 'stretch',
     	marginHorizontal: 15,

@@ -54,9 +54,17 @@ class Animation extends Component {
 	}
 
 	interpolate = (to, from = 0) => {
+		let inputRange, outputRange;
+		if(Array.isArray(to)) {
+			inputRange = from;
+			outputRange = to;
+		} else {
+			inputRange = [0, 1];
+			outputRange = [from, to];
+		}
 		return this.state.anim.interpolate({
-			inputRange: [0, 1],
-			outputRange: [from, to],
+			inputRange,
+			outputRange,
 		});
 	}
 
