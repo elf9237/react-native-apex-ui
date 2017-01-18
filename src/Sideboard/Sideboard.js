@@ -2,7 +2,7 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import ReactNative, {PanResponder, Animated, InteractionManager} from 'react-native';
+import ReactNative, {PanResponder, Animated, InteractionManager, Platform} from 'react-native';
 var Popover = require('../Popover');
 var DropdownAnimation = require('./DropdownAnimation');
 var PopupAnimation = require('./PopupAnimation');
@@ -32,19 +32,21 @@ class Sideboard extends Component {
 			onStartShouldSetPanResponder: () => true,
 			onMoveShouldSetPanResponder: this.onMoveShouldSetPanResponder,
 			onPanResponderRelease: this.onPanResponderRelease,
-			onPanResponderMove: Animated.event([
-				null, {dy: this.state.offset},
-			]),
+			onPanResponderMove: this.onPanResponderMove,
 		});
 	}
 
-	onMoveShouldSetPanResponder = (e: Object, gestureState: Object) => {
-		const dy = Math.floor(Math.abs(gestureState.dy));
-		return dy > 10;
+	onPanResponderMove = (e, gestureState) => {
+		if(Platform.OS === 'android' 
+			&& !this.props.masked
+			&& this.isOppositeToPosition(gestureState.dy)) {
+			return;
+		}
+		this.state.offset.setValue(gestureState.dy);
 	}
 
 	onPanResponderRelease = (e, gestureState) => {
-		if(this.isOppositeToPosition()) {
+		if(this.isOppositeToPosition(gestureState.dy)) {
 			Animated.spring(
 				this.state.offset,
 				{toValue: 0}
@@ -60,9 +62,8 @@ class Sideboard extends Component {
 		}
 	}
 
-	isOppositeToPosition(value) {
-		return this.state.offset.__getValue() 
-			* (this.props.docked === 'bottom' ? 1 : -1) < 0;
+	isOppositeToPosition(dy) {
+		return dy * (this.props.docked === 'bottom' ? 1 : -1) < 0;
 	}
 
 	render() {
