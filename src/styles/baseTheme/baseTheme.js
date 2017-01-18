@@ -36,8 +36,8 @@ module.exports = PlatformStyleSheet.create({
 		},
 		android: {
 			zDepthShadows: [1,2,3,4,5].map(d => ({
-				borderWidth: 1,
-				borderColor: 'rgba(0,0,0,.12)',
+				// borderWidth: 1,
+				// borderColor: 'rgba(0,0,0,.12)',
 			})),
 		}
 	},

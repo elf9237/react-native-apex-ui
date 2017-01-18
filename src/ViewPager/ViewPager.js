@@ -3,6 +3,7 @@
 
 import React from 'react';
 import ReactNative from 'react-native';
+var StaticContainer = require('StaticContainer.react');
 
 const {
   View,
@@ -19,7 +20,6 @@ type Props = {
   bounces?: boolean;
   children?: any;
   style?: any;
-  lazy: boolean;
   animated: boolean;
 };
 
@@ -125,16 +125,14 @@ class ViewPager extends React.Component {
     var {selectedIndex, width, height} = this.state;
     var style = Platform.OS === 'ios' && styles.card;
     return React.Children.map(this.props.children, (child, i) => (
-      <PageItem 
+      <View 
         key={'r_' + i}
-        style={style} 
-        width={width}
-        height={height}
-        selected={selectedIndex === i}
-        lazy={this.props.lazy}
+        style={[style, {width, height}]} 
       >
-        {child}
-      </PageItem>
+        <StaticContainer shouldUpdate={selectedIndex === i}>
+          {child}
+        </StaticContainer>
+      </View>
     ));
   }
 
@@ -161,46 +159,6 @@ ViewPager.defaultProps = {
   scrollEnabled: true,
   selectedIndex: 0,
 }
-
-var PageItem = React.createClass({
-  getDefaultProps: function() {
-    return {
-      lazy: false,
-    };
-  },
-
-  getInitialState: function() {
-    return {
-      hasBeenSelected: this.props.selected,
-    };
-  },
-
-  componentWillReceiveProps: function(nextProps: { selected?: boolean }) {
-    if (nextProps.selected && !this.state.hasBeenSelected) {
-      this.setState({hasBeenSelected: true});
-    }
-  },
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.selected || nextProps.width != this.props.width;
-  },
-
-  render() {
-    let {lazy, style, children, width, height} = this.props;
-
-    if (!lazy || this.state.hasBeenSelected) {
-      var pageContents = children;
-    } else {
-      var pageContents = <View />;
-    }
-
-    return (
-      <View style={[style, {width, height}]}>
-        {pageContents}
-      </View>
-    );
-  }
-});
 
 
 var styles = StyleSheet.create({
