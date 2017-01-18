@@ -5,8 +5,8 @@ import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text, InteractionManager} from 'react-native';
 var UIManager = require('UIManager');
 var RenderToLayer = require('../Layer/RenderToLayer');
-var PopoverAnimationVertical = require('./animations/PopoverAnimationVertical');
-var MaskedAnimation = require('./animations/MaskedAnimation');
+var PopoverAnimationVertical = require('./PopoverAnimationVertical');
+var MaskedAnimation = require('./MaskedAnimation');
 
 class Popover extends Component {
 	static propTypes = {

@@ -3,7 +3,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
-var Animation = require('../Popover/animations/Animation');
+var Animation = require('../Popover/Animation');
 
 class DialogAnimation extends Animation {
 	prepareStyle() {

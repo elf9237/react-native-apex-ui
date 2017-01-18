@@ -3,7 +3,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {Animated} from 'react-native';
-var Paper = require('../../Paper');
+var Paper = require('../Paper');
 
 class Animation extends Component {
 	static propTypes = {
