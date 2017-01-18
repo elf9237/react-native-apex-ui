@@ -2,7 +2,7 @@
 'use strict';
 
 import React from 'react';
-import ReactNative, {StaticContainer} from 'react-native';
+import ReactNative from 'react-native';
 
 const {
   View,
@@ -151,6 +151,18 @@ class ViewPager extends React.Component {
       onSelectedIndexChange && onSelectedIndexChange(selectedIndex);
     }
   }
+}
+
+class StaticContainer extends React.Component {
+  shouldComponentUpdate(nextProps: Object): boolean {
+    return !!nextProps.shouldUpdate;
+  }
+
+  render() {
+    var child = this.props.children;
+    return (child === null || child === false) ? null : React.Children.only(child);
+  }
+
 }
 
 ViewPager.defaultProps = {
