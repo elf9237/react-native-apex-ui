@@ -85,13 +85,13 @@ const styles = {
     	flex: 1,
     	paddingLeft: 11,
     	alignSelf: 'stretch',
-    	alignItems: 'flex-start',
+    	justifyContent: 'flex-start',
     },
     rightButton: {
     	flex: 1,
     	paddingRight: 11,
     	alignSelf: 'stretch',
-    	alignItems: 'flex-end',
+    	justifyContent: 'flex-end',
     },
     titleText: {
 		fontSize: 18,

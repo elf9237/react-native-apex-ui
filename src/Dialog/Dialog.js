@@ -13,7 +13,7 @@ class Dialog extends Component {
 	};
 
 	static contextTypes = {
-		getFilledLayer: PropTypes.func.isRequired,
+		getLayer: PropTypes.func.isRequired,
 	};
 
 	render() {
@@ -34,9 +34,11 @@ class Dialog extends Component {
 
 		return (
 			<Popover
+				zDepth={0}
+				masked={true}
 				{...other}
 				animation={DialogAnimation}
-				getLayer={this.context.getFilledLayer}
+				getLayer={this.context.getLayer}
 				layerStyle={styles.layer}
 				style={[styles.popover, style]}>
 				{title}
@@ -51,12 +53,13 @@ const styles = {
 		justifyContent: 'center',
 	},
 	popover: {
+		overflow: 'hidden',
 		alignSelf: 'stretch',
     	marginHorizontal: 15,
     },
     titleText: {
     	fontSize: 18,
-    	lineHeight: 36,
+    	lineHeight: 46,
     	fontWeight: '400',
     	textAlign: 'center',
     }

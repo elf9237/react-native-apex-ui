@@ -10,6 +10,7 @@ var MaskedAnimation = require('./animations/MaskedAnimation');
 
 class Popover extends Component {
 	static propTypes = {
+		getLayer: PropTypes.func,
 		anchorEl: PropTypes.object,
 		animation: PropTypes.func,
 		children: PropTypes.node,
@@ -20,7 +21,7 @@ class Popover extends Component {
 	};
 
 	static defaultProps = {
-		masked: true,
+		masked: false,
 		animation: PopoverAnimationVertical,
 		onRequestClose: () => {},
 	};

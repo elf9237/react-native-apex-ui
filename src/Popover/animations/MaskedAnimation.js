@@ -11,6 +11,7 @@ class MaskedAnimation extends Animation {
 	};
 
 	static defaultProps = {
+		zDepth: 0,
 		onStartShouldSetResponder: () => false,
 	};
 

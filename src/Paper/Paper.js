@@ -34,7 +34,8 @@ class Paper extends Component {
 		const _style = [
 			styles.paper,
 			{backgroundColor: paper.backgroundColor}, 
-			[paper.zDepthShadows[zDepth - 1]], style
+			[paper.zDepthShadows[zDepth - 1]],
+			style,
 		];
 		return (
 			<Animated.View 
