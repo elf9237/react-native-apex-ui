@@ -2,8 +2,7 @@
 'use strict';
 
 import React from 'react';
-import ReactNative from 'react-native';
-var StaticContainer = require('StaticContainer.react');
+import ReactNative, {StaticContainer} from 'react-native';
 
 const {
   View,

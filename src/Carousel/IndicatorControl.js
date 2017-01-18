@@ -1,11 +1,8 @@
 
 'use strict';
 
-import React from 'react';
-var StyleSheet = require('StyleSheet');
-var View = require('View');
-
-var PropTypes = React.PropTypes;
+import React, {Component, PropTypes} from 'react';
+import ReactNative, {View, StyleSheet} from 'react-native';
 
 var IndicatorControl = React.createClass({
   propTypes: {

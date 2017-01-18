@@ -2,8 +2,8 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import ReactNative, {View, Text, InteractionManager} from 'react-native';
-var UIManager = require('UIManager');
+import ReactNative, {View, Text, InteractionManager, UIManager} from 'react-native';
+
 var RenderToLayer = require('../Layer/RenderToLayer');
 var PopoverAnimationVertical = require('./PopoverAnimationVertical');
 var MaskedAnimation = require('./MaskedAnimation');

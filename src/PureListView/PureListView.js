@@ -1,12 +1,8 @@
 
 'use strict';
 
-var ListView = require('ListView');
-var Dimensions = require('Dimensions');
-var Platform = require('Platform');
-var StyleSheet = require('StyleSheet');
-var React = require('React');
-var View = require('View');
+import React, {Component, PropTypes} from 'react';
+import ReactNative, {View, ListView, Dimensions, Platform, StyleSheet} from 'react-native';
 
 type Rows = Array<Object>;
 type RowsAndSections = {
