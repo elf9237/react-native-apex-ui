@@ -18,6 +18,10 @@ const ReactNativeApexUI = {
 	Dialog: require('./Dialog'),
 	Sideboard: require('./Sideboard'),
 	HeaderDrawer: require('./HeaderDrawer'),
+
+	PureListView: require('./PureListView'),
+	ViewPager: require('./ViewPager'),
+	Carousel: require('./Carousel'),
 	
 };
 
