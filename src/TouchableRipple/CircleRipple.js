@@ -4,8 +4,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {Animated, Easing} from 'react-native';
 
-const easeOut = Easing.bezier(0.23, 1, 0.32, 1);
-
 class CircleRipple extends Component {
 	static propTypes = {
 		color: PropTypes.string,
@@ -21,7 +19,7 @@ class CircleRipple extends Component {
 		super(props);
 		this.state = {
 			rippleValue: new Animated.Value(0),
-			opacityValue: new Animated.Value(props.opacity),
+			opacityValue: new Animated.Value(0),
 		};
 	}
 
@@ -33,25 +31,26 @@ class CircleRipple extends Component {
 		return false;
 	}
 
+	easeOut = (anim, duration, toValue = 1) => {
+		return Animated.timing(anim, {
+			toValue,
+			duration,
+			easing: Easing.bezier(0.23, 1, 0.32, 1),
+		});
+	}
+
 	animate = () => {
 		const {opacityValue, rippleValue} = this.state;
 		Animated.parallel([
-			Animated.timing(opacityValue, {
-				toValue: 0,
-				easing: easeOut,
-				duration: 2000,
-			}),
-			Animated.timing(rippleValue, {
-				toValue: 1,
-				easing: easeOut,
-				duration: 1000,
-			}),
+			this.easeOut(opacityValue, 2000),
+			this.easeOut(rippleValue, 1000),
 		]).start(this.props.onEnd);
 	}
 
 	render() {
 		const {
 			color,
+			opacity,
 			style,
 		} = this.props;
 
@@ -62,7 +61,10 @@ class CircleRipple extends Component {
 			style,
 			{
 				backgroundColor: color,
-				opacity: opacityValue,
+				opacity: opacityValue.interpolate({
+					inputRange: [0, 0.05, 1],
+					outputRange: [0, opacity, 0],
+				}),
 				transform: [{scale: rippleValue}],
 			},
 		];
