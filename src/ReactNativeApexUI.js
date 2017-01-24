@@ -22,6 +22,10 @@ const ReactNativeApexUI = {
 	PureListView: require('./PureListView'),
 	ViewPager: require('./ViewPager'),
 	Carousel: require('./Carousel'),
+
+	TouchableRipple: require('./TouchableRipple'),
+	RippleButton: require('./Button/RippleButton'),
+	
 	
 };
 
