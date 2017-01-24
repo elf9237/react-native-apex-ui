@@ -2,10 +2,22 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import ReactNative, {View, Text} from 'react-native';
+import ReactNative, {Animated, Easing} from 'react-native';
 var Animation = require('../Popover/Animation');
 
 class PopupAnimation extends Animation {
+	setAnimationTo = (value) => {
+		this.state.anim.stopAnimation();
+		Animated.timing(
+			this.state.anim,
+			{
+				toValue: value,
+				easing: Easing.bezier(0.215, 0.61, 0.355, 1),
+				duration: 250,
+			}
+		).start();
+	}
+
 	prepareStyle() {
 		let {layout, anim} = this.state;
 

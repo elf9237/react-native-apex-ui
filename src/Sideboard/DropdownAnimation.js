@@ -12,8 +12,8 @@ class DropdownAnimation extends Animation {
 			this.state.anim,
 			{
 				toValue: value,
-				easing: Easing.elastic(.8),
-				duration: 320,
+				easing: Easing.elastic(.7),
+				duration: 350,
 			}
 		).start();
 	}

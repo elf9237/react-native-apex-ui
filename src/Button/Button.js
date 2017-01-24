@@ -6,15 +6,19 @@ import ReactNative, {View, Text, TouchableOpacity, ActivityIndicator} from 'reac
 import {fade} from '../utils/colorManipulator';
 var VectorIcon = require('../VectorIcon');
 
-
-const IconType = PropTypes.oneOfType([PropTypes.element, PropTypes.object]);
-
 class Button extends Component {
 	static propTypes = {
-	  	icon: IconType,
-    	caption: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+	  	icon: PropTypes.oneOfType([
+	  		PropTypes.element, PropTypes.object
+	  	]),
+    	caption: PropTypes.node,
     	color: PropTypes.string,
     	loading: PropTypes.bool,
+    	touchableComponent: PropTypes.func,
+	};
+
+	static defaultProps = {
+		touchableComponent: TouchableOpacity,
 	};
 
 	render() {
@@ -25,6 +29,7 @@ class Button extends Component {
 			loading,
 			style,
 			captionStyle,
+			touchableComponent: TouchableComponent,
 			...other,
 		} = this.props;
 
@@ -33,7 +38,7 @@ class Button extends Component {
 		}
 
 		if(!React.isValidElement(icon) && icon) {
-			icon = <VectorIcon color={textColor} {...icon} />;
+			icon = <VectorIcon color={textColor} {...icon} style={styles.icon} />;
 		}
 
 		if(loading) {
@@ -53,7 +58,7 @@ class Button extends Component {
 		}
 
 		return (
-			<TouchableOpacity 
+			<TouchableComponent 
 				style={[styles.container, {backgroundColor: color}, style]}
 				activeOpacity={.5}
 				disabled={loading}
@@ -61,7 +66,7 @@ class Button extends Component {
 				{icon}
 				{space}
 				{caption}
-			</TouchableOpacity>
+			</TouchableComponent>
 		);
 	}
 }
@@ -74,7 +79,12 @@ const styles = {
 	    justifyContent: 'center',
     },
     caption: {
-    	letterSpacing: 1,
+    	letterSpacing: 0,
+    	fontWeight: '500',
+    	backgroundColor: 'transparent',
+    },
+    icon: {
+    	backgroundColor: 'transparent',
     },
     space: {
     	width: 6,

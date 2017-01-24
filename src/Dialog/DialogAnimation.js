@@ -9,7 +9,7 @@ class DialogAnimation extends Animation {
 	prepareStyle() {
 		let {layout, anim} = this.state;
 		return {
-			opacity: !layout ? 0 : anim,
+			opacity: anim,
 			transform: [
 				{scale: this.interpolate(1, .85)},
 			],
