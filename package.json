@@ -1,7 +1,20 @@
 {
   "name": "react-native-apex-ui",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
+  "author": {
+    "name": "lin jinyi",
+    "email": "597790581@qq.com"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-component",
+    "mobile",
+    "ios",
+    "android",
+    "ui",
+    "apex"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +23,8 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "react": "~15.3.1",
-    "react-native": "0.36.1",
+    "react": ">=15.3.1",
+    "react-native": ">=0.36.1",
     "react-native-vector-icons": "~4.0.0"
   }
 }
