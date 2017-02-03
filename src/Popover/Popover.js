@@ -50,9 +50,6 @@ class Popover extends Component {
 				this.state.closing = false;
 			} else {
 				this.state.closing = true;
-				InteractionManager.runAfterInteractions(() => 
-					this._mounted && this.setState({open: false})
-				);
 			}
 		}
 	}
@@ -66,6 +63,12 @@ class Popover extends Component {
 
 	componentDidUpdate() {
 		this.setPlacement();
+	}
+
+	onAnimationEnd = () => {
+		if(this.state.closing && this._mounted) {
+			this.setState({open: false});
+		}
 	}
 
 	setPlacement = async () => {
@@ -147,6 +150,7 @@ class Popover extends Component {
 		contents.push(
 			<Animation 
 				{...other} 
+				onEnd={this.onAnimationEnd}
 				ref={el => this.targetEl = el}
 				key='animation'
 				style={style} 

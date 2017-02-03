@@ -15,7 +15,7 @@ class DropdownAnimation extends Animation {
 				easing: Easing.elastic(.7),
 				duration: 350,
 			}
-		).start();
+		).start(this.props.onEnd);
 	}
 
 	prepareStyle() {

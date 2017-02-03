@@ -15,7 +15,7 @@ class PopupAnimation extends Animation {
 				easing: Easing.bezier(0.215, 0.61, 0.355, 1),
 				duration: 250,
 			}
-		).start();
+		).start(this.props.onEnd);
 	}
 
 	prepareStyle() {

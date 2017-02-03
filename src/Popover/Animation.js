@@ -8,6 +8,7 @@ var Paper = require('../Paper');
 class Animation extends Component {
 	static propTypes = {
 		open: PropTypes.bool,
+		onEnd: PropTypes.func,
 	};
 
 	static defaultProps = {
@@ -43,7 +44,7 @@ class Animation extends Component {
 				toValue: value,
 				duration: 220,
 			}
-		).start();
+		).start(this.props.onEnd);
 	}
 
 	handleLayout = (e) => {
