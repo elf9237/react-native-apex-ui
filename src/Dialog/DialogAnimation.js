@@ -11,7 +11,7 @@ class DialogAnimation extends Animation {
 		return {
 			opacity: anim,
 			transform: [
-				{scale: this.interpolate(1, .85)},
+				{scale: this.interpolate(1, .9)},
 			],
 		};
 	}

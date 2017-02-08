@@ -42,6 +42,7 @@ class ListItem extends Component {
 			rightItem,
 			hideChevron,
 			hideSeparator,
+			containerStyle,
 			style,
 			...other,
 		} = this.props;
@@ -68,9 +69,9 @@ class ListItem extends Component {
 		return (
 			<TouchableHighlight 
 				underlayColor={underlayColor}
-				style={[styles.container, style]}
+				style={containerStyle}
 				{...other}>
-				<View style={styles.content}>
+				<View style={[styles.content, style]}>
 					{leftIcon}
 					<View style={styles.center}>
 						{title}
@@ -86,11 +87,7 @@ class ListItem extends Component {
 }
 
 const styles = {
-	container: {
-		
-	},
 	content: {
-		flex: 1,
 		paddingVertical: 10,
         paddingHorizontal: 15,
 		flexDirection: 'row',
