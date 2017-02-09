@@ -12,7 +12,9 @@ class Button extends Component {
 	  		PropTypes.element, PropTypes.object
 	  	]),
     	caption: PropTypes.node,
-    	color: PropTypes.string,
+    	backgroundColor: PropTypes.string,
+    	iconColor: PropTypes.string,
+    	captionColor: PropTypes.string,
     	loading: PropTypes.bool,
     	touchableComponent: PropTypes.func,
 	};
@@ -25,32 +27,36 @@ class Button extends Component {
 		let {
 			icon,
 			caption,
-			color,
+			backgroundColor,
+			iconColor,
+			captionColor,
 			loading,
 			style,
-			captionStyle,
 			touchableComponent: TouchableComponent,
 			...other,
 		} = this.props;
 
-		if(color) {
-			var textColor = 'white';
-		}
-
-		if(!React.isValidElement(icon) && icon) {
-			icon = <VectorIcon color={textColor} {...icon} style={styles.icon} />;
-		}
-
 		if(loading) {
-			color = color && fade(color, 0.5);
-			icon = <ActivityIndicator color={textColor} />;
+			icon = <ActivityIndicator color={iconColor} />;
+			backgroundColor = backgroundColor && fade(backgroundColor, 0.5);
+		} else if(React.isValidElement(icon)) {
+			icon = icon;
+		} else if(typeof icon == 'object') {
+			icon = (
+				<VectorIcon 
+					color={iconColor} 
+					{...icon} 
+					style={styles.icon} 
+				/>
+			);
 		}
 
 		if(typeof caption === 'string') {
-			caption = 
-				<Text style={[styles.caption, {color: textColor}, captionStyle]}>
+			caption = (
+				<Text style={[styles.caption, {color: captionColor}]}>
 					{caption}
 				</Text>
+			);
 		}
 
 		if(icon && caption) {
@@ -59,7 +65,7 @@ class Button extends Component {
 
 		return (
 			<TouchableComponent 
-				style={[styles.container, {backgroundColor: color}, style]}
+				style={[styles.container, {backgroundColor}, style]}
 				activeOpacity={.5}
 				disabled={loading}
 				{...other}>
@@ -80,7 +86,7 @@ const styles = {
     },
     caption: {
     	letterSpacing: 0,
-    	fontWeight: '500',
+    	fontWeight: 'normal',
     	backgroundColor: 'transparent',
     },
     icon: {
