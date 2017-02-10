@@ -4,7 +4,7 @@
 var spacing = require('./spacing');
 var palette = require('./palette');
 var PlatformStyleSheet = require('../../utils/PlatformStyleSheet');
-import {fade} from '../../utils/colorManipulator';
+import {fade, darken} from '../../utils/colorManipulator';
 
 module.exports = PlatformStyleSheet.create({
 	spacing,
@@ -44,5 +44,12 @@ module.exports = PlatformStyleSheet.create({
 	ripple: {
 		color: 'rgba(0, 0, 0, 0.75)',
 		opacity: .3,
+	},
+	tag: {
+		backgroundColor: darken(palette.canvasColor, 0.12),
+		textColor: palette.textColor, 
+		deleteIconColor: fade(palette.textColor, 0.26),
+		fontSize: 14,
+		fontWeight: 'normal',
 	},
 });

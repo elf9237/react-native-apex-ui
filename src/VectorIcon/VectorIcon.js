@@ -31,6 +31,10 @@ class VectorIcon extends Component {
 		uiTheme: PropTypes.object.isRequired,
 	};
 
+	setNativeProps = (props) => {
+		this.refs.icon.setNativeProps(props);
+	}
+
 	render() {
 		const {
 			type,
@@ -45,7 +49,7 @@ class VectorIcon extends Component {
 			return null;
 
 		return (
-			<Icon {...vectorIcon} {...other} />
+			<Icon ref='icon' {...vectorIcon} {...other} />
 		);
 	}
 }
