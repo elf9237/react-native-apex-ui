@@ -88,7 +88,8 @@ const styles = {
 		borderRadius: 4,
 	},
     text: {
-    	lineHeight: 30,
+    	paddingTop: 6,
+    	paddingBottom: 6,
 		paddingLeft: 12,
 		paddingRight: 12,
     },
