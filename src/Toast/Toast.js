@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var Popover = require('../Popover');
-var DialogAnimation = require('../Dialog/DialogAnimation');
+var FadeAnimation = require('./FadeAnimation').create({duration: 150});
 
 class Toast extends Component {
 	static propTypes = {
@@ -51,9 +51,10 @@ class Toast extends Component {
 
 	render() {
 		const {
-			style,
 			message,
+			duration,
 			children,
+			style,
 			...other,
 		} = this.props;
 
@@ -69,7 +70,7 @@ class Toast extends Component {
 		return (
 			<Popover
 				{...other}
-				animation={DialogAnimation}
+				animation={FadeAnimation}
 				layerStyle={styles.layer}
 				style={[styles.toast, style]}>
 				{content}
