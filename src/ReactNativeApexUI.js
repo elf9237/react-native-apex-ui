@@ -27,6 +27,7 @@ const ReactNativeApexUI = {
 	RippleButton: require('./Button/RippleButton'),
 	Toast: require('./Toast'),
 	Tag: require('./Tag'),
+	Toptip: require('./Toptip'),
 	
 	
 };

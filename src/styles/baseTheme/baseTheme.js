@@ -52,4 +52,18 @@ module.exports = PlatformStyleSheet.create({
 		fontSize: 14,
 		fontWeight: 'normal',
 	},
+	toptip: {
+		backgroundColors: {
+			error: '#f6383a',
+			warning: '#f60',
+			success: '#4cd964',
+			info: '#dedede',
+		},
+		colors: {
+			error: '#fff',
+			warning: '#fff',
+			success: '#fff',
+			info: '#000',
+		}
+	},
 });

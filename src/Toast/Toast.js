@@ -4,50 +4,19 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var Popover = require('../Popover');
+var AutoHide = require('../Toptip/AutoHide');
 var FadeAnimation = require('./FadeAnimation').create({duration: 150});
 
-class Toast extends Component {
+class Toast extends AutoHide {
 	static propTypes = {
+		...AutoHide.propTypes,
 		message: PropTypes.string,
-		duration: PropTypes.number,
-		open: PropTypes.bool,
-		onRequestClose: PropTypes.func,
 		children: PropTypes.node,
 	};
 
 	static defaultProps = {
 		duration: 2000,
 	};
-
-	componentDidMount() {
-		if(this.props.open) {
-			this.setAutoHideTimer();
-		}
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.open !== this.props.open) {
-			if (this.props.open) {
-				this.setAutoHideTimer();
-			} else {
-				clearTimeout(this.autoHideTimerId);
-			}
-		}
-	}
-
-	componentWillUnmount() {
-		clearTimeout(this.autoHideTimerId);
-	}
-
-	setAutoHideTimer = () => {
-		clearTimeout(this.autoHideTimerId);
-		this.autoHideTimerId = setTimeout(() => {
-			const {open, onRequestClose} = this.props;
-			if(open && onRequestClose) {
-				onRequestClose();
-			}
-		}, this.props.duration);
-	}
 
 	render() {
 		const {

@@ -44,7 +44,8 @@ class Popover extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.open !== this.state.open) {
+		const open = this.state.open && !this.state.closing;
+		if (nextProps.open !== open) {
 			if (nextProps.open) {
 				this.state.open = true;
 				this.state.closing = false;
@@ -55,10 +56,7 @@ class Popover extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if(!nextProps.open && !this.state.open) {
-			return false;			
-		}
-		return true;
+		return this.state.open;
 	}
 
 	componentDidUpdate() {
