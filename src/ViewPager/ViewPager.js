@@ -126,7 +126,7 @@ class ViewPager extends React.Component {
     return React.Children.map(this.props.children, (child, i) => (
       <View 
         key={'r_' + i}
-        style={[style, {width, height}]} 
+        style={[style, {width}]} 
       >
         <StaticContainer shouldUpdate={selectedIndex === i}>
           {child}
