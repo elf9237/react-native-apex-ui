@@ -6,17 +6,11 @@ import ReactNative, {View, Animated, Easing} from 'react-native';
 var Animation = require('../Popover/Animation');
 
 class DropdownAnimation extends Animation {
-	setAnimationTo = (value) => {
-		this.state.anim.stopAnimation();
-		Animated.timing(
-			this.state.anim,
-			{
-				toValue: value,
-				easing: Easing.elastic(.7),
-				duration: 350,
-			}
-		).start(this.props.onEnd);
-	}
+	static defaultProps = {
+		...Animation.defaultProps,
+		duration: 350,
+		easing: Easing.elastic(.7),
+	};
 
 	prepareStyle() {
 		let {layout, anim} = this.state;

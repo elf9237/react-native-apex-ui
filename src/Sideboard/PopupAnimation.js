@@ -6,17 +6,11 @@ import ReactNative, {Animated, Easing} from 'react-native';
 var Animation = require('../Popover/Animation');
 
 class PopupAnimation extends Animation {
-	setAnimationTo = (value) => {
-		this.state.anim.stopAnimation();
-		Animated.timing(
-			this.state.anim,
-			{
-				toValue: value,
-				easing: Easing.bezier(0.215, 0.61, 0.355, 1),
-				duration: 250,
-			}
-		).start(this.props.onEnd);
-	}
+	static defaultProps = {
+		...Animation.defaultProps,
+		duration: 250,
+		easing: Easing.bezier(0.215, 0.61, 0.355, 1),
+	};
 
 	prepareStyle() {
 		let {layout, anim} = this.state;

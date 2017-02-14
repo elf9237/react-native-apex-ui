@@ -9,11 +9,23 @@ class Animation extends Component {
 	static propTypes = {
 		open: PropTypes.bool,
 		onEnd: PropTypes.func,
+		duration: PropTypes.number,
+		easing: PropTypes.func,
 	};
 
 	static defaultProps = {
 		onStartShouldSetResponder: () => true,
+		duration: 200,
 	};
+
+	static create(defaultProps) {
+		return class Animatable extends this {
+			static defaultProps = {
+				...this.defaultProps,
+				...defaultProps,
+			};
+		}
+	}
 
 	state = {
 		layout: {width: 0, height: 0},
@@ -36,13 +48,15 @@ class Animation extends Component {
 		this.refs.paper.setNativeProps(props);
 	}
 
-	setAnimationTo = (value) => {
+	setAnimationTo = (toValue) => {
+		const {duration, easing} = this.props;
 		this.state.anim.stopAnimation();
 		Animated.timing(
 			this.state.anim,
 			{
-				toValue: value,
-				duration: 220,
+				toValue,
+				duration,
+				easing,
 			}
 		).start(this.props.onEnd);
 	}
