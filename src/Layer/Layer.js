@@ -27,6 +27,10 @@ class Layer extends Component {
 			onRequestClose,
 		} = this.props;
 
+		if(!this.state.children) {
+			return null;
+		}
+
 		return (
 			<TouchableWithoutFeedback onPress={onRequestClose}>
 				<View ref='view' style={[styles.layer, style]}>
@@ -39,6 +43,7 @@ class Layer extends Component {
 
 const styles = {
 	layer: {
+    	backgroundColor: 'transparent',
         position: 'absolute',
     	left: 0,
     	right: 0,

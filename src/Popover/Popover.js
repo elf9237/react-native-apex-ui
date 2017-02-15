@@ -94,8 +94,8 @@ class Popover extends Component {
 			return;
 		}
 
-		const left = anchorPosition.x - layerContainerPosition.x;
-		const top = anchorPosition.y - layerContainerPosition.y;
+		const left = (anchorPosition.x || 0) - (layerContainerPosition.x || 0);
+		const top = (anchorPosition.y || 0) - (layerContainerPosition.y || 0);
 
 		const offset = this.props.offset || {};
 		const offsetX = offset.x || 0;

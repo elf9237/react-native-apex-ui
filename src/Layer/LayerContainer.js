@@ -35,6 +35,21 @@ class LayerContainer extends Component {
 		});
 	}
 
+	hasAnyLayer = () => {
+		const {layers} = this.state;
+		return layers.some(layer => layer != undefined);
+	}
+
+	getChildCount = () => {
+		let count = 0;
+		React.Children.forEach(this.props.children, (child) => {
+			if (React.isValidElement(child)) {
+				count++;
+			}
+		});
+		return count;
+	}
+
 	render() {
 		const {
 			style,
@@ -42,6 +57,10 @@ class LayerContainer extends Component {
 		} = this.props;
 
 		const {layers} = this.state;
+
+		if(!this.hasAnyLayer() && !this.getChildCount()) {
+			return null;
+		}
 
 		const content = React.isValidElement(children) ? children : 
 			<View style={styles.content}>
@@ -64,6 +83,7 @@ class LayerContainer extends Component {
 
 const styles = {
 	container: {
+    	backgroundColor: 'transparent',
         position: 'absolute',
     	left: 0,
     	right: 0,
