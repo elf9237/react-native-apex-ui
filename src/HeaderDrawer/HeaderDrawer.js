@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 
-var Layer = require('../Layer');
+var LayerContainer = require('../Layer/LayerContainer');
 var Popover = require('../Popover');
 var DropdownAnimation = require('../Sideboard/DropdownAnimation');
 
@@ -19,8 +19,8 @@ class HeaderDrawer extends Component {
 		headerHeight: 0,
 	};
 
-	getLayer = () => {
-		return this.refs.layer;
+	getLayerContainer = () => {
+		return this.refs.layerContainer;
 	}
 
 	onLayoutHeader = (e) => {
@@ -48,14 +48,14 @@ class HeaderDrawer extends Component {
 				<Popover
 					masked={true}
 					animation={DropdownAnimation}
-					getLayer={this.getLayer}
+					getLayerContainer={this.getLayerContainer}
 					style={styles.popover}
 					{...other}
 				>
 					{drawer}
 				</Popover>
 
-				<Layer ref='layer' />
+				<LayerContainer ref='layerContainer' />
 
 				<View 
 					style={styles.header} 

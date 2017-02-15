@@ -10,53 +10,76 @@ class RenderToLayer extends Component {
 		open: PropTypes.bool.isRequired,
 		render: PropTypes.func.isRequired,
 		onRequestClose: PropTypes.func,
-		getLayer: PropTypes.func,
+		getLayerContainer: PropTypes.func,
 		layerStyle: PropTypes.object,
 	};
 
 	static contextTypes = {
-		getLayer: PropTypes.func.isRequired,
+		getLayerContainer: PropTypes.func.isRequired,
 	};
 
 	componentDidMount() {
-		this.renderIfOpened();
+		this.layer = null;
+		this.remove = null;
+		this.renderLayer();
 	}
 
 	componentDidUpdate() {
-		this.renderIfOpened();
+		this.renderLayer();
 	}
 
 	componentWillUnmount() {
-		this.unrenderFromLayer();
+		this.unrenderLayer();
+	}
+
+	getLayerContainer = () => {
+		return (this.props.getLayerContainer || this.context.getLayerContainer)();
 	}
 
 	getLayer = () => {
-		return (this.props.getLayer || this.context.getLayer)();
+		return this.layer;
 	}
 
-	renderIfOpened = () => {
-		this.props.open ? this.renderToLayer() : this.unrenderFromLayer();
-	}
-
-	unrenderFromLayer = () => {
-		const layer = this.getLayer();
-		if(layer) {
-			layer.unrenderLayer();
+	unrenderLayer = () => {
+		if (!this.remove) {
+			return;
 		}
+
+		this.remove();
+		this.remove = null;
+		this.layer = null;
 	}
 
-	renderToLayer = () => {
+	renderLayer = () => {
 		const {
-			render,
+			open,
 			onRequestClose,
+			render,
 			layerStyle,
 		} = this.props;
 
-		const layer = this.getLayer();
-		if(layer) {
-			const layerElement = render();
-			layer.renderLayer(layerElement, layerStyle, this);
-			layer.onClickAway = onRequestClose;
+		const layerContainer = this.getLayerContainer();
+
+		if(open) {
+      		const layerElement = render();
+			if(!this.remove) {
+				const layer = (
+					<Layer 
+						style={layerStyle} 
+						onRequestClose={onRequestClose}
+						ref={(layer) => this.layer = layer}>
+						{layerElement}
+					</Layer>
+				);
+        		this.remove = layerContainer.appendChild(layer);
+			} else {
+				if(this.layer) {
+					this.layer.setNativeProps({style: layerStyle});
+					this.layer.updateChildren(layerElement);
+				}
+			}
+		} else {
+			this.unrenderLayer();
 		}
 	}
 

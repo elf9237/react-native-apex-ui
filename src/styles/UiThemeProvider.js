@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var getUiTheme = require('./getUiTheme');
-var Layer = require('../Layer');
+var LayerContainer = require('../Layer/LayerContainer');
 
 class UiThemeProvider extends Component {
 	static propTypes = {
@@ -12,43 +12,33 @@ class UiThemeProvider extends Component {
 	};
 
 	static childContextTypes = {
-		uiTheme: PropTypes.object.isRequired,
-		getLayer: React.PropTypes.func.isRequired,
+		uiTheme: PropTypes.object,
+		getLayerContainer: React.PropTypes.func,
 	};
 
 	getChildContext() {
 		return {
 			uiTheme: this.props.uiTheme || getUiTheme(),
-			getLayer: this.getLayer,
+			getLayerContainer: this.getLayerContainer,
 		};
 	}
 
-	getLayer = () => {
-        return this.refs.layer;
+	getLayerContainer = () => {
+        return this.refs.layerContainer;
     }
 
 	render() {
 		const {
-			style,
 			children,
 			...other,
 		} = this.props;
 
 		return (
-			<View 
-				{...other}
-				style={[styles.container, style]}>
+			<LayerContainer {...other} ref='layerContainer'>
 				{children}
-				<Layer ref='layer' />
-			</View>
+			</LayerContainer>
 		);
 	}
 }
-
-const styles = {
-	container: {
-		flex: 1,
-	},
-};
 
 module.exports = UiThemeProvider;

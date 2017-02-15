@@ -10,7 +10,7 @@ var MaskedAnimation = require('./MaskedAnimation');
 
 class Popover extends Component {
 	static propTypes = {
-		getLayer: PropTypes.func,
+		getLayerContainer: PropTypes.func,
 		anchorEl: PropTypes.object,
 		animation: PropTypes.func,
 		children: PropTypes.node,
@@ -43,7 +43,7 @@ class Popover extends Component {
 		 this._mounted = false; 
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps = (nextProps) => {
 		const open = this.state.open && !this.state.closing;
 		if (nextProps.open !== open) {
 			if (nextProps.open) {
@@ -79,46 +79,43 @@ class Popover extends Component {
 			return;
 		}
 
-		const [
-			locationX, 
-			locationY, 
-			width, 
-			height, 
-			pageX, 
-			pageY
-		] = await this.getAnchorPosition(anchorEl);
-		
-		let targetEl = this.targetEl;
-		if (!targetEl || !targetEl.setNativeProps) {
+		const {renderToLayer} = this.refs;
+		if (!renderToLayer) {
 			return;
 		}
+
+		const layerContainerEl = renderToLayer.getLayerContainer();
+
+		const anchorPosition = await this.getPosition(anchorEl);
+		const layerContainerPosition = await this.getPosition(layerContainerEl);
+
+		const targetEl = this.targetEl;
+		if(!targetEl || !targetEl.setNativeProps) {
+			return;
+		}
+
+		const left = anchorPosition.x - layerContainerPosition.x;
+		const top = anchorPosition.y - layerContainerPosition.y;
 
 		const offset = this.props.offset || {};
 		const offsetX = offset.x || 0;
 		const offsetY = offset.y || 0;
+		
+		let style = {};
+		style.left = left + offsetX;
+		style.top = top + anchorPosition.height + offsetY;
 
-		let x, y;
-		if(this.props.getLayer) {
-			x = locationX;
-			y = locationY;
-		} else {
-			x = pageX;
-			y = pageY;
-		}
-
-		targetEl.setNativeProps({
-			style: {
-				left: x + offsetX,
-				top: y + height + offsetY,
-			}
-		});
+		targetEl.setNativeProps({style});
 	}
 
-	getAnchorPosition = (anchorEl) => {
+	getPosition = (el) => {
 		return new Promise((resolve, reject) => {
-			UIManager.measure(
-				ReactNative.findNodeHandle(anchorEl),
-				(...argv) => resolve(argv),
+			UIManager.measureInWindow(
+				ReactNative.findNodeHandle(el),
+				(x, y, width, height) => {
+					const position = {x, y, width, height};
+					resolve(position);
+				},
 			);
 		});
 	}
@@ -162,10 +159,11 @@ class Popover extends Component {
 	render() {
 		return (
 			<RenderToLayer 
+          		ref="renderToLayer"
 				open={this.state.open}
 				render={this.renderContent}
 				onRequestClose={this.props.onRequestClose}
-				getLayer={this.props.getLayer}
+				getLayerContainer={this.props.getLayerContainer}
 				layerStyle={this.props.layerStyle}
 			/>
 		);

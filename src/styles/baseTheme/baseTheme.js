@@ -57,7 +57,7 @@ module.exports = PlatformStyleSheet.create({
 			error: '#f6383a',
 			warning: '#f60',
 			success: '#4cd964',
-			info: '#dedede',
+			info: '#eee',
 		},
 		colors: {
 			error: '#fff',
