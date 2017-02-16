@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var getUiTheme = require('./getUiTheme');
 var LayerContainer = require('../Layer/LayerContainer');
+var WindowEventEmitter = require('../EventEmitter/WindowEventEmitter');
 
 class UiThemeProvider extends Component {
 	static propTypes = {
@@ -27,6 +28,13 @@ class UiThemeProvider extends Component {
         return this.refs.layerContainer;
     }
 
+    onTouchStart = (e) => {
+    	const {touchStartTarget} = e.nativeEvent;
+    	if(touchStartTarget !== 'popover') {
+    		WindowEventEmitter.emit('touchstart');
+    	}
+    }
+
 	render() {
 		const {
 			children,
@@ -34,7 +42,10 @@ class UiThemeProvider extends Component {
 		} = this.props;
 
 		return (
-			<LayerContainer {...other} ref='layerContainer'>
+			<LayerContainer 
+				{...other} 
+				ref='layerContainer'
+				onTouchStart={this.onTouchStart}>
 				{children}
 			</LayerContainer>
 		);

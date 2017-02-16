@@ -95,6 +95,7 @@ class Tooltip extends Component {
 			<Popover
 				{...other}
 				zDepth={0}
+				useLayerForClickAway={false}
 				onLayout={this.onLayout}
 				animation={TooltipAnimation}
 				layerStyle={styles.layer}
@@ -112,7 +113,8 @@ class Tooltip extends Component {
 
 const styles = {
 	layer: {
-
+		bottom: undefined,
+		right: undefined,
     },
     tooltip: {
     	alignItems: 'flex-start',

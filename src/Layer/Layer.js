@@ -32,7 +32,7 @@ class Layer extends Component {
 		}
 
 		return (
-			<TouchableWithoutFeedback onPress={onRequestClose}>
+			<TouchableWithoutFeedback onPress={onRequestClose ? onRequestClose : () => {}}>
 				<View ref='view' style={[styles.layer, style]}>
 					{this.state.children}
 				</View>

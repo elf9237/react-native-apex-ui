@@ -2,6 +2,9 @@
 'use strict';
 
 const ReactNativeApexUI = {
+	//EventEmitter
+	WindowEventEmitter: require('./EventEmitter/WindowEventEmitter'),
+
 	//tools
 	UiThemeProvider: require('./styles/UiThemeProvider'),
 	getUiTheme: require('./styles/getUiTheme'),

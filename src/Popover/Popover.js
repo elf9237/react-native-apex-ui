@@ -26,6 +26,7 @@ class Popover extends Component {
 		open: PropTypes.bool,
 		masked: PropTypes.bool,
 		zDepth: PropTypes.number,
+		useLayerForClickAway: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -33,6 +34,7 @@ class Popover extends Component {
 		animation: PopoverAnimationVertical,
 		onRequestClose: () => {},
     	placement: 'bottom-right',
+    	useLayerForClickAway: true,
 	};
 
 	constructor(props) {
@@ -50,7 +52,6 @@ class Popover extends Component {
 
 	componentWillUnmount() {
 		 this._mounted = false; 
-		 this.targetEl = null;
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -85,6 +86,10 @@ class Popover extends Component {
 		this.props.onLayout && this.props.onLayout(e);
 	}
 
+	onTouchStart = (e) => {
+		e.nativeEvent.touchStartTarget = 'popover';
+	}
+
 	setPlacement = async () => {
 		if (!this.state.open || this.state.closing) {
 			return;
@@ -105,7 +110,7 @@ class Popover extends Component {
 		const anchorPosition = await this.getPosition(anchorEl);
 		const layerContainerPosition = await this.getPosition(layerContainerEl);
 
-		const targetEl = this.targetEl;
+		const targetEl = renderToLayer.getLayer();
 		if(!targetEl || !targetEl.setNativeProps) {
 			return;
 		}
@@ -167,6 +172,7 @@ class Popover extends Component {
 			style,
 			masked,
 			layerStyle,
+			useLayerForClickAway,
 			...other,
 		} = this.props;
 
@@ -185,9 +191,9 @@ class Popover extends Component {
 		contents.push(
 			<Animation 
 				{...other} 
+				onTouchStart={this.onTouchStart}
 				onLayout={this.onLayout}
 				onEnd={this.onAnimationEnd}
-				ref={el => this.targetEl = el}
 				key='animation'
 				style={style} 
 				open={open}>
@@ -206,6 +212,7 @@ class Popover extends Component {
 				onRequestClose={this.props.onRequestClose}
 				getLayerContainer={this.props.getLayerContainer}
 				layerStyle={this.props.layerStyle}
+				useLayerForClickAway={this.props.useLayerForClickAway}
 			/>
 		);
 	}

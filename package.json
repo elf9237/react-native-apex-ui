@@ -1,6 +1,6 @@
 {
   "name": "react-native-apex-ui",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "author": {
     "name": "lin jinyi",
@@ -20,6 +20,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "Apache License",
+  "dependencies": {
+    "events": "^1.1.1"
+  },
   "peerDependencies": {
     "react": ">=15.3.1",
     "react-native": ">=0.36.1",

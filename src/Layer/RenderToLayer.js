@@ -4,6 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text} from 'react-native';
 var Layer = require('./Layer');
+var WindowEventEmitter = require('../EventEmitter/WindowEventEmitter');
 
 class RenderToLayer extends Component {
 	static propTypes = {
@@ -12,6 +13,7 @@ class RenderToLayer extends Component {
 		onRequestClose: PropTypes.func,
 		getLayerContainer: PropTypes.func,
 		layerStyle: PropTypes.object,
+		useLayerForClickAway: PropTypes.bool,
 	};
 
 	static contextTypes = {
@@ -20,7 +22,7 @@ class RenderToLayer extends Component {
 
 	componentDidMount() {
 		this.layer = null;
-		this.remove = null;
+		this.removeLayer = null;
 		this.renderLayer();
 	}
 
@@ -40,13 +42,17 @@ class RenderToLayer extends Component {
 		return this.layer;
 	}
 
+	onClickAway = () => {
+		this.props.onRequestClose && this.props.onRequestClose();
+	}
+
 	unrenderLayer = () => {
-		if (!this.remove) {
-			return;
+		if (this.removeLayer) {
+			this.removeLayer();
+			WindowEventEmitter.removeListener('touchstart', this.onClickAway);
 		}
 
-		this.remove();
-		this.remove = null;
+		this.removeLayer = null;
 		this.layer = null;
 	}
 
@@ -56,22 +62,27 @@ class RenderToLayer extends Component {
 			onRequestClose,
 			render,
 			layerStyle,
+			useLayerForClickAway,
 		} = this.props;
 
 		const layerContainer = this.getLayerContainer();
 
 		if(open) {
       		const layerElement = render();
-			if(!this.remove) {
+			if(!this.removeLayer) {
 				const layer = (
 					<Layer 
 						style={layerStyle} 
-						onRequestClose={onRequestClose}
+						onRequestClose={useLayerForClickAway && this.onClickAway}
 						ref={(layer) => this.layer = layer}>
 						{layerElement}
 					</Layer>
 				);
-        		this.remove = layerContainer.appendChild(layer);
+        		this.removeLayer = layerContainer.appendChild(layer);
+
+        		if(!useLayerForClickAway) {
+        			WindowEventEmitter.addListener('touchstart', this.onClickAway);
+        		}
 			} else {
 				if(this.layer) {
 					this.layer.setNativeProps({style: layerStyle});
