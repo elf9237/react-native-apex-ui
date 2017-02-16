@@ -28,6 +28,8 @@ const ReactNativeApexUI = {
 	Toast: require('./Toast'),
 	Tag: require('./Tag'),
 	Toptip: require('./Toptip'),
+	Tooltip: require('./Tooltip'),
+	
 	
 	
 };

@@ -7,7 +7,7 @@ var Layer = require('./Layer');
 
 class RenderToLayer extends Component {
 	static propTypes = {
-		open: PropTypes.bool.isRequired,
+		open: PropTypes.bool,
 		render: PropTypes.func.isRequired,
 		onRequestClose: PropTypes.func,
 		getLayerContainer: PropTypes.func,

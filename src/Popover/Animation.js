@@ -65,6 +65,7 @@ class Animation extends Component {
 		let layout = e.nativeEvent.layout;
 		if(layout.height && layout.width) {
 			this.setState({layout});
+			this.props.onLayout && this.props.onLayout(e);
 		}
 	}
 

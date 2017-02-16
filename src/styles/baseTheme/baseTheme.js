@@ -66,4 +66,10 @@ module.exports = PlatformStyleSheet.create({
 			info: '#000',
 		}
 	},
+	tooltip: {
+		color: '#fff',
+      	backgroundColor: '#616161',
+		opacity: 0.9,
+		arrowWidth: 6,
+	},
 });

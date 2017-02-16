@@ -54,6 +54,7 @@ class LayerContainer extends Component {
 		const {
 			style,
 			children,
+			...other,
 		} = this.props;
 
 		const {layers} = this.state;
@@ -69,7 +70,7 @@ class LayerContainer extends Component {
 		;
 
 		return (
-			<View style={[styles.container, style]}>
+			<View {...other} style={[styles.container, style]}>
 				<StaticContainer 
 					layers={layers}
 					shouldUpdate={({props}) => props.layers === layers}>

@@ -12,6 +12,14 @@ class Popover extends Component {
 	static propTypes = {
 		getLayerContainer: PropTypes.func,
 		anchorEl: PropTypes.object,
+		placement: PropTypes.oneOf([
+			'top-center',
+			'top-left',
+			'top-right',
+			'bottom-center',
+			'bottom-left',
+			'bottom-right',
+		]),
 		animation: PropTypes.func,
 		children: PropTypes.node,
 		onRequestClose: PropTypes.func,
@@ -24,6 +32,7 @@ class Popover extends Component {
 		masked: false,
 		animation: PopoverAnimationVertical,
 		onRequestClose: () => {},
+    	placement: 'bottom-right',
 	};
 
 	constructor(props) {
@@ -41,6 +50,7 @@ class Popover extends Component {
 
 	componentWillUnmount() {
 		 this._mounted = false; 
+		 this.targetEl = null;
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -69,6 +79,12 @@ class Popover extends Component {
 		}
 	}
 
+	onLayout = (e) => {
+		let layout = e.nativeEvent.layout;
+		this.state.layout = layout;
+		this.props.onLayout && this.props.onLayout(e);
+	}
+
 	setPlacement = async () => {
 		if (!this.state.open || this.state.closing) {
 			return;
@@ -94,16 +110,40 @@ class Popover extends Component {
 			return;
 		}
 
+		const {layout} = this.state;
+
 		const left = (anchorPosition.x || 0) - (layerContainerPosition.x || 0);
 		const top = (anchorPosition.y || 0) - (layerContainerPosition.y || 0);
+		const width = anchorPosition.width || 0;
+		const height = anchorPosition.height || 0;
+
+
+		const placement = this.props.placement.split('-');
+		const verticalPlacement = placement[0];
+        const horizontalPlacement = placement[1];
+
+		let placementOffsetX = 0, placementOffsetY = 0;
+		if(horizontalPlacement == 'left') {
+			placementOffsetX = -layout.width + width;
+		} else if(horizontalPlacement == 'center') {
+			placementOffsetX = -(layout.width - width) / 2;
+		}
+
+		if(verticalPlacement == 'top') {
+			placementOffsetY = -layout.height;
+		} else if(verticalPlacement == 'bottom') {
+			placementOffsetY = height;
+		}
+
 
 		const offset = this.props.offset || {};
 		const offsetX = offset.x || 0;
 		const offsetY = offset.y || 0;
-		
-		let style = {};
-		style.left = left + offsetX;
-		style.top = top + anchorPosition.height + offsetY;
+
+		const style = {
+        	left: left + placementOffsetX + offsetX,
+        	top: top + placementOffsetY + offsetY,
+        };
 
 		targetEl.setNativeProps({style});
 	}
@@ -145,6 +185,7 @@ class Popover extends Component {
 		contents.push(
 			<Animation 
 				{...other} 
+				onLayout={this.onLayout}
 				onEnd={this.onAnimationEnd}
 				ref={el => this.targetEl = el}
 				key='animation'
