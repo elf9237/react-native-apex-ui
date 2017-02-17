@@ -70,6 +70,6 @@ module.exports = PlatformStyleSheet.create({
 		color: '#fff',
       	backgroundColor: '#616161',
 		opacity: 0.9,
-		arrowWidth: 6,
+		arrowSize: 6,
 	},
 });

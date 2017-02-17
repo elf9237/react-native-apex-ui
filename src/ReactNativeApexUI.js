@@ -2,7 +2,7 @@
 'use strict';
 
 const ReactNativeApexUI = {
-	//EventEmitter
+	//events
 	WindowEventEmitter: require('./EventEmitter/WindowEventEmitter'),
 
 	//tools
@@ -25,6 +25,7 @@ const ReactNativeApexUI = {
 	PureListView: require('./PureListView'),
 	ViewPager: require('./ViewPager'),
 	Carousel: require('./Carousel'),
+	StaticContainer: require('./StaticContainer'),
 
 	TouchableRipple: require('./TouchableRipple'),
 	RippleButton: require('./Button/RippleButton'),

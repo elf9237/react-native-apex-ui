@@ -15,7 +15,7 @@ function getArrowStyles(props, state, context) {
 		};
 	}
 
-	const {backgroundColor, opacity, arrowWidth} = context.uiTheme.tooltip;
+	const {backgroundColor, opacity, arrowSize} = context.uiTheme.tooltip;
 
 	const placement = props.placement.split('-');
 	const verticalPlacement = placement[0];
@@ -32,17 +32,17 @@ function getArrowStyles(props, state, context) {
     }
 
     if(horizontalPlacement === 'left') {
-    	var right = 15 + arrowWidth;
+    	var right = 15 + arrowSize;
     } else if(horizontalPlacement === 'right') {
-    	var left = 15 + arrowWidth;
+    	var left = 15 + arrowSize;
     } else {
-    	var left = (tooltipLayout.width) / 2 - arrowWidth;
+    	var left = (tooltipLayout.width) / 2 - arrowSize;
     }
 
 	return {
 		position: 'absolute',
-    	borderWidth: arrowWidth,
     	borderColor: 'transparent',
+    	borderWidth: arrowSize,
     	opacity,
     	borderTopColor,
     	borderBottomWidth,
@@ -84,10 +84,10 @@ class Tooltip extends Component {
 			...other,
 		} = this.props;
 
-		const {color, backgroundColor, opacity, arrowWidth} = this.context.uiTheme.tooltip;
+		const {color, backgroundColor, opacity, arrowSize} = this.context.uiTheme.tooltip;
 
 		const titleEl = typeof title === 'string' ? 
-			<Text style={{color}}>{title}</Text> : title;
+			<Text style={[styles.title, {color}]}>{title}</Text> : title;
 
         const arrowStyle = getArrowStyles(this.props, this.state, this.context);
 
@@ -99,7 +99,7 @@ class Tooltip extends Component {
 				onLayout={this.onLayout}
 				animation={TooltipAnimation}
 				layerStyle={styles.layer}
-				style={[styles.tooltip, {paddingVertical: arrowWidth}]}>
+				style={[styles.tooltip, {paddingVertical: arrowSize}]}>
 
 				<View style={arrowStyle} />
 
@@ -122,6 +122,9 @@ const styles = {
     },
     content: {
     	borderRadius: 4,
+    	overflow: 'hidden',
+    },
+    title: {
     	padding: 10,
     },
 };

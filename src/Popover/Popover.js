@@ -87,7 +87,7 @@ class Popover extends Component {
 	}
 
 	onTouchStart = (e) => {
-		e.nativeEvent.touchStartTarget = 'popover';
+		e.nativeEvent.preventWindowTouchStartEvent = true;
 	}
 
 	setPlacement = async () => {
