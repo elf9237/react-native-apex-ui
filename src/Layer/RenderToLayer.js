@@ -12,7 +12,7 @@ class RenderToLayer extends Component {
 		render: PropTypes.func.isRequired,
 		onRequestClose: PropTypes.func,
 		getLayerContainer: PropTypes.func,
-		layerStyle: PropTypes.object,
+		layerStyle: View.propTypes.style,
 		useLayerForClickAway: PropTypes.bool,
 	};
 

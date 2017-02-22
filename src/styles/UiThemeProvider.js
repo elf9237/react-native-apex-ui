@@ -29,8 +29,8 @@ class UiThemeProvider extends Component {
     }
 
     onTouchStart = (e) => {
-    	const {preventWindowTouchStartEvent} = e.nativeEvent;
-    	if(!preventWindowTouchStartEvent) {
+    	const {prevenTouchStartEvent} = e.nativeEvent;
+    	if(prevenTouchStartEvent !== true) {
     		WindowEventEmitter.emit('touchstart');
     	}
     }

@@ -4,7 +4,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text, TouchableWithoutFeedback} from 'react-native';
 var Popover = require('../Popover');
-var LayerContainer = require('../Layer/LayerContainer');
 var TooltipAnimation = require('./TooltipAnimation');
 
 function getArrowStyles(props, state, context) {
@@ -62,7 +61,7 @@ class Tooltip extends Component {
 	};
 
 	static defaultProps = {
-    	placement: 'bottom-right',
+    	placement: 'top-center',
 	};
 
 	static contextTypes = {
@@ -99,7 +98,7 @@ class Tooltip extends Component {
 				onLayout={this.onLayout}
 				animation={TooltipAnimation}
 				layerStyle={styles.layer}
-				style={[styles.tooltip, {paddingVertical: arrowSize}]}>
+				style={[styles.tooltip, {paddingVertical: arrowSize}, style]}>
 
 				<View style={arrowStyle} />
 
@@ -126,6 +125,7 @@ const styles = {
     },
     title: {
     	padding: 10,
+    	fontSize: 13,
     },
 };
 

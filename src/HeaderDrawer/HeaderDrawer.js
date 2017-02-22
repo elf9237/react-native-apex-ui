@@ -39,9 +39,11 @@ class HeaderDrawer extends Component {
 			...other,
 		} = this.props;
 
+		const fakeHeader = <View style={{height: this.state.headerHeight}} />;
+
 		return (
 			<View style={[styles.container, style]}>
-				<View style={{height: this.state.headerHeight}} />
+				{fakeHeader}
 				
 				{children}
 
@@ -52,6 +54,7 @@ class HeaderDrawer extends Component {
 					style={styles.popover}
 					{...other}
 				>
+					{fakeHeader}
 					{drawer}
 				</Popover>
 
