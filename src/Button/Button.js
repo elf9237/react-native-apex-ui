@@ -6,15 +6,13 @@ import ReactNative, {View, Text, TouchableOpacity, ActivityIndicator} from 'reac
 import {fade} from '../utils/colorManipulator';
 var VectorIcon = require('../VectorIcon');
 
-class Button extends Component {
+class FlatButton extends Component {
 	static propTypes = {
-	  	icon: PropTypes.oneOfType([
-	  		PropTypes.element, PropTypes.object
-	  	]),
+	  	icon: PropTypes.oneOfType([PropTypes.element, PropTypes.object]),
     	caption: PropTypes.node,
     	backgroundColor: PropTypes.string,
-    	iconColor: PropTypes.string,
     	captionColor: PropTypes.string,
+    	captionStyle: View.propTypes.style,
     	loading: PropTypes.bool,
     	touchableComponent: PropTypes.func,
 	};
@@ -28,32 +26,27 @@ class Button extends Component {
 			icon,
 			caption,
 			backgroundColor,
-			iconColor,
 			captionColor,
 			loading,
 			style,
+			captionStyle,
 			touchableComponent: TouchableComponent,
 			...other,
 		} = this.props;
 
 		if(loading) {
-			icon = <ActivityIndicator color={iconColor} />;
+			icon = <ActivityIndicator color={backgroundColor} />;
 			backgroundColor = backgroundColor && fade(backgroundColor, 0.5);
 		} else if(React.isValidElement(icon)) {
 			icon = icon;
 		} else if(typeof icon == 'object') {
-			icon = (
-				<VectorIcon 
-					color={iconColor} 
-					{...icon} 
-					style={styles.icon} 
-				/>
-			);
+			icon = <VectorIcon style={styles.transparent} {...icon} />;
 		}
+
 
 		if(typeof caption === 'string') {
 			caption = (
-				<Text style={[styles.caption, {color: captionColor}]}>
+				<Text style={[styles.transparent, {color: captionColor}, captionStyle]}>
 					{caption}
 				</Text>
 			);
@@ -65,8 +58,7 @@ class Button extends Component {
 
 		return (
 			<TouchableComponent 
-				style={[styles.container, {backgroundColor}, style]}
-				activeOpacity={.5}
+				style={[styles.button, {backgroundColor}, style]}
 				disabled={loading}
 				{...other}>
 				{icon}
@@ -78,23 +70,21 @@ class Button extends Component {
 }
 
 const styles = {
-	container: {
-        padding: 10,
+	button: {
+		minWidth: 88,
+		minHeight: 36,
+		paddingVertical: 6,
+		paddingHorizontal: 10,
         flexDirection: 'row',
 	    alignItems: 'center',
 	    justifyContent: 'center',
     },
-    caption: {
-    	letterSpacing: 0,
-    	fontWeight: 'normal',
-    	backgroundColor: 'transparent',
-    },
-    icon: {
+    transparent: {
     	backgroundColor: 'transparent',
     },
     space: {
-    	width: 6,
+    	width: 8,
     },
 };
 
-module.exports = Button;
+module.exports = FlatButton;
