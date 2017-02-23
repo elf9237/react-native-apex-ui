@@ -72,4 +72,13 @@ module.exports = PlatformStyleSheet.create({
 		opacity: 0.9,
 		arrowSize: 6,
 	},
+	actionSheet: {
+		borderRadius: 6,
+		backgroundColor: '#fff', 
+		separatorColor: '#e4e4e4',
+		cancelTextColor: '#0069d5',
+		buttonHeight: 46,
+		buttonTextSize: 18,
+		buttonTextColor: '#000',
+	}
 });

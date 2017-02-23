@@ -21,6 +21,7 @@ const ReactNativeApexUI = {
 	Dialog: require('./Dialog'),
 	Sideboard: require('./Sideboard'),
 	HeaderDrawer: require('./HeaderDrawer'),
+	ActionSheet: require('./ActionSheet'),
 
 	PureListView: require('./PureListView'),
 	ViewPager: require('./ViewPager'),

@@ -12,7 +12,7 @@ class FlatButton extends Component {
     	caption: PropTypes.node,
     	backgroundColor: PropTypes.string,
     	captionColor: PropTypes.string,
-    	captionStyle: View.propTypes.style,
+    	captionStyle: Text.propTypes.style,
     	loading: PropTypes.bool,
     	touchableComponent: PropTypes.func,
 	};
