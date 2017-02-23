@@ -9,7 +9,7 @@ class DropdownAnimation extends Animation {
 	static defaultProps = {
 		...Animation.defaultProps,
 		duration: 350,
-		easing: Easing.elastic(.7),
+		easing: Easing.elastic(.63),
 	};
 
 	prepareStyle() {
