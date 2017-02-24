@@ -1,6 +1,6 @@
 {
   "name": "react-native-apex-ui",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "author": {
     "name": "lin jinyi",
@@ -21,6 +21,7 @@
   },
   "license": "Apache License",
   "dependencies": {
+    "lodash": "^4.17.4",
     "events": "^1.1.1"
   },
   "peerDependencies": {
