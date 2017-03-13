@@ -1,8 +1,8 @@
-# <img src='https://github.com/glinjy/react-native-apex-ui/blob/master/img/logo.png' height='60'> react-native-apex-ui
+# ![logo](https://raw.githubusercontent.com/glinjy/react-native-apex-ui/master/img/logo.png) react-native-apex-ui
 
 A react native cross platform ui kit.
 
-![ui](https://github.com/glinjy/react-native-apex-ui/blob/master/img/ui.png)
+![ui](https://raw.githubusercontent.com/glinjy/react-native-apex-ui/master/img/ui.png)
 
 ### include 
 * Button
