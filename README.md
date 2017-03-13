@@ -1,3 +1,4 @@
+
 # ![logo](https://raw.githubusercontent.com/glinjy/react-native-apex-ui/master/img/logo.png) react-native-apex-ui
 
 A react native cross platform ui kit.
@@ -74,3 +75,8 @@ class SimpleToastExample extends Component {
 ### Examples
 
 check out [RNApexUIExample](https://github.com/glinjy/RNApexUIExample/)
+
+### Thanks
+
+* [apexsoft](http://apexsoft.com.cn/)
+* [material-ui](http://www.material-ui.com/)
