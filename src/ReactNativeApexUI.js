@@ -9,6 +9,7 @@ const ReactNativeApexUI = {
 	UiThemeProvider: require('./styles/UiThemeProvider'),
 	getUiTheme: require('./styles/getUiTheme'),
 	PlatformStyleSheet: require('./utils/PlatformStyleSheet'),
+	colorManipulator: require('./utils/colorManipulator'),
 
 	//componets
 	VectorIcon: require('./VectorIcon'),

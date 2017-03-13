@@ -5,7 +5,7 @@ import React, {Component, PropTypes} from 'react';
 import ReactNative, {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 var VectorIcon = require('../VectorIcon');
 
-const TitleType = PropTypes.oneOfType([PropTypes.element, PropTypes.string]);
+const TitleType = PropTypes.any;
 
 class ListItem extends Component {
 	static propTypes = {
@@ -29,8 +29,8 @@ class ListItem extends Component {
 	createTextElement(text, styles) {
 		if (React.isValidElement(text)) {
 			return text;
-		} else if(typeof text === 'string') {
-			return <Text style={styles}>{text}</Text>
+		} else if(text != null) {
+			return <Text style={styles}>{text}</Text>;
 		}
 	}
 
