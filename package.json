@@ -1,6 +1,6 @@
 {
   "name": "react-native-apex-ui",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "author": {
     "name": "lin jinyi",
@@ -13,7 +13,8 @@
     "ios",
     "android",
     "ui",
-    "apex"
+    "apex",
+    "apex-ui"
   ],
   "main": "index.js",
   "scripts": {

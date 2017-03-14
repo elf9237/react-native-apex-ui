@@ -32,6 +32,21 @@ react-native link react-native-vector-icons
 
 ### Get Started
 
+#### `UiThemeProvider`
+At the beginning, apex ui components require a `UiThemeProvider` to be provided. You can’t use any components without wrapping the root component in `<UiThemeProvider>`:
+
+```js
+import {UiThemeProvider} from 'react-native-apex-ui';
+
+const App = () => (
+  <UiThemeProvider>
+    <Root />
+  </UiThemeProvider>
+);
+```
+
+Following that, you can use any of the components:
+
 ```js
 import {RippleButton, Toast} from 'react-native-apex-ui';
 
