@@ -34,7 +34,7 @@ class Popover extends Component {
 		animation: PopoverAnimationVertical,
 		onRequestClose: () => {},
     	placement: 'bottom-right',
-    	useLayerForClickAway: true,
+    	useLayerForClickAway: false,
 	};
 
 	constructor(props) {
@@ -67,7 +67,7 @@ class Popover extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return this.state.open;
+		return !!this.state.open;
 	}
 
 	componentDidUpdate() {

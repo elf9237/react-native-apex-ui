@@ -30,6 +30,10 @@ class HeaderDrawer extends Component {
 		}
 	}
 
+	onTouchStart = (e) => {
+		e.nativeEvent.preventTouchStartEvent = true;
+	}
+
 	render() {
 		const {
 			header,
@@ -63,6 +67,7 @@ class HeaderDrawer extends Component {
 
 				<View 
 					style={styles.header} 
+					onTouchStart={this.onTouchStart}
 					onLayout={this.onLayoutHeader}>
 					{header}
 				</View>

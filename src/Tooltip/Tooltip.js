@@ -94,7 +94,6 @@ class Tooltip extends Component {
 			<Popover
 				{...other}
 				zDepth={0}
-				useLayerForClickAway={false}
 				onLayout={this.onLayout}
 				animation={TooltipAnimation}
 				style={[styles.tooltip, {paddingVertical: arrowSize}, style]}>

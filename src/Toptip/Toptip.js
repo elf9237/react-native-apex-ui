@@ -50,6 +50,7 @@ class Toptip extends AutoHide {
 			<Popover
 				layerStyle={styles.layer}
 				{...other}
+				useLayerForClickAway={true}
 				animation={ToptipAnimation}
 				style={[styles.toptip, {backgroundColor, paddingTop}, style]}>
 				{content}
