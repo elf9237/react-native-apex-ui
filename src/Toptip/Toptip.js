@@ -48,9 +48,9 @@ class Toptip extends AutoHide {
 
 		return (
 			<Popover
+				layerStyle={styles.layer}
 				{...other}
 				animation={ToptipAnimation}
-				layerStyle={styles.layer}
 				style={[styles.toptip, {backgroundColor, paddingTop}, style]}>
 				{content}
 			</Popover>
@@ -60,7 +60,7 @@ class Toptip extends AutoHide {
 
 const styles = {
 	layer: {
-		bottom: undefined,
+		right: 0,
 	},
 	toptip: {
 		alignSelf: 'stretch',

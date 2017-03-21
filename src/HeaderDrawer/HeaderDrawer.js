@@ -52,6 +52,7 @@ class HeaderDrawer extends Component {
 					animation={DropdownAnimation}
 					getLayerContainer={this.getLayerContainer}
 					style={styles.popover}
+					layerStyle={styles.layer}
 					{...other}
 				>
 					{fakeHeader}
@@ -79,6 +80,10 @@ const styles = {
         left: 0,
         right: 0,
         position: 'absolute',
+    },
+    layer: {
+    	right: 0,
+    	bottom: 0,
     },
     popover: {
 		alignSelf: 'stretch',

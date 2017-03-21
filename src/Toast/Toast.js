@@ -38,9 +38,9 @@ class Toast extends AutoHide {
 
 		return (
 			<Popover
+				layerStyle={styles.layer}
 				{...other}
 				animation={FadeAnimation}
-				layerStyle={styles.layer}
 				style={[styles.toast, style]}>
 				{content}
 			</Popover>
@@ -51,6 +51,8 @@ class Toast extends AutoHide {
 const styles = {
 	layer: {
 		justifyContent: 'center',
+		right: 0,
+		bottom: 0,
 	},
 	toast: {
 		alignSelf: 'center',

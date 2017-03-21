@@ -106,21 +106,25 @@ const Animations = {
 const styles = {
 	dockedlayer: {
         top: {
+        	right: 0,
         	top: 0,
         	bottom: undefined,
         },
         bottom: {
+        	right: 0,
         	top: undefined,
         	bottom: 0,
         }
     },
     maskedlayer: {
     	top: {
+        	right: 0,
     		top: 0,
     		bottom: 0,
     		justifyContent: 'flex-start',
     	},
     	bottom: {
+        	right: 0,
     		top: 0,
     		bottom: 0,
     		justifyContent: 'flex-end',

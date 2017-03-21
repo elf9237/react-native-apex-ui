@@ -48,6 +48,8 @@ class Dialog extends Component {
 
 const styles = {
 	layer: {
+		right: 0,
+		bottom: 0,
 		justifyContent: 'center',
 	},
 	popover: {

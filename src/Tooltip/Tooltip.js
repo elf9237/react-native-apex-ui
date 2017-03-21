@@ -97,7 +97,6 @@ class Tooltip extends Component {
 				useLayerForClickAway={false}
 				onLayout={this.onLayout}
 				animation={TooltipAnimation}
-				layerStyle={styles.layer}
 				style={[styles.tooltip, {paddingVertical: arrowSize}, style]}>
 
 				<View style={arrowStyle} />
@@ -111,10 +110,6 @@ class Tooltip extends Component {
 }
 
 const styles = {
-	layer: {
-		bottom: undefined,
-		right: undefined,
-    },
     tooltip: {
     	alignItems: 'flex-start',
     	backgroundColor: 'transparent',

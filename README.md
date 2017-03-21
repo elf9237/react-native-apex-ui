@@ -1,5 +1,7 @@
-
-# ![logo](https://raw.githubusercontent.com/glinjy/react-native-apex-ui/master/img/logo.png) react-native-apex-ui
+<h1>
+<img alt="logo" align="top" width="56" hspace="4" src="https://raw.githubusercontent.com/glinjy/react-native-apex-ui/master/img/logo.png" />
+react-native-apex-ui
+</h1>
 
 A react native cross platform ui kit.
 

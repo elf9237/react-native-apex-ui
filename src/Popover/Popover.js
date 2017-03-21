@@ -211,10 +211,16 @@ class Popover extends Component {
 				render={this.renderContent}
 				onRequestClose={this.props.onRequestClose}
 				getLayerContainer={this.props.getLayerContainer}
-				layerStyle={this.props.layerStyle}
+				layerStyle={[styles.layer, this.props.layerStyle]}
 				useLayerForClickAway={this.props.useLayerForClickAway}
 			/>
 		);
+	}
+}
+const styles = {
+	layer: {
+		right: undefined,
+		bottom: undefined,
 	}
 }
 
