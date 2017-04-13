@@ -21,6 +21,7 @@ const ReactNativeApexUI = {
 	HeaderDrawer: require('./HeaderDrawer'),
 	ActionSheet: require('./ActionSheet'),
 	Collapse: require('./Collapse'),
+	Timeline: require('./Timeline'),
 
 	PureListView: require('./PureListView'),
 	ViewPager: require('./ViewPager'),
