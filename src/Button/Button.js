@@ -14,6 +14,7 @@ class FlatButton extends Component {
     	captionColor: PropTypes.string,
     	captionStyle: Text.propTypes.style,
     	loading: PropTypes.bool,
+    	disabled: PropTypes.bool,
     	touchableComponent: PropTypes.func,
 	};
 
@@ -28,15 +29,19 @@ class FlatButton extends Component {
 			backgroundColor,
 			captionColor,
 			loading,
+			disabled,
 			style,
 			captionStyle,
 			touchableComponent: TouchableComponent,
 			...other,
 		} = this.props;
 
+		if(disabled || loading) {
+			backgroundColor = backgroundColor && fade(backgroundColor, 0.35);
+		}
+		
 		if(loading) {
 			icon = <ActivityIndicator color={backgroundColor} />;
-			backgroundColor = backgroundColor && fade(backgroundColor, 0.5);
 		} else if(React.isValidElement(icon)) {
 			icon = icon;
 		} else if(typeof icon == 'object') {
@@ -59,7 +64,7 @@ class FlatButton extends Component {
 		return (
 			<TouchableComponent 
 				style={[styles.button, {backgroundColor}, style]}
-				disabled={loading}
+				disabled={disabled || loading}
 				{...other}>
 				{icon}
 				{space}

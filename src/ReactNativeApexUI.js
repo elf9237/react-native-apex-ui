@@ -20,6 +20,7 @@ const ReactNativeApexUI = {
 	Sideboard: require('./Sideboard'),
 	HeaderDrawer: require('./HeaderDrawer'),
 	ActionSheet: require('./ActionSheet'),
+	Collapse: require('./Collapse'),
 
 	PureListView: require('./PureListView'),
 	ViewPager: require('./ViewPager'),

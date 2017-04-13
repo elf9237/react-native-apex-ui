@@ -9,6 +9,7 @@ class PopupAnimation extends Animation {
 	static defaultProps = {
 		...Animation.defaultProps,
 		duration: 250,
+		easing: Easing.bezier(0,0,.58,1),
 	};
 
 	prepareStyle() {

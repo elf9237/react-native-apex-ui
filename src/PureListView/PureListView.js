@@ -41,8 +41,8 @@ class PureListView extends React.Component {
     let dataSource = new ListView.DataSource({
       getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
       getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
-      rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+      rowHasChanged: props.rowHasChanged || ((row1, row2) => row1 !== row2),
+      sectionHeaderHasChanged: props.sectionHeaderHasChanged || ((s1, s2) => s1 !== s2),
     });
 
     this.state = {
@@ -99,12 +99,5 @@ function cloneWithData(dataSource: ListView.DataSource, data: ?Data) {
   }
   return dataSource.cloneWithRowsAndSections(data);
 }
-
-var styles = StyleSheet.create({
-  separator: {
-    backgroundColor: '#eeeeee',
-    height: 1,
-  },
-});
 
 module.exports = PureListView;
